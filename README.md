@@ -19,14 +19,14 @@ $ git clone https://github.com/muebel/gestioip-docker-compose
 ```
 or
 ```
-$ wget https://github.com/muebel/gestioip-docker-compose/archive/master.zip
-$ unzip master.zip
+$ wget https://github.com/muebel/gestioip-docker-compose/archive/main.zip
+$ unzip main.zip
 ```
 
 * Change to the new directory
 
 ```
-$ cd gestioip-docker-compose
+$ cd gestioip-docker-compose-main
 ```
 
 * Edit the .env file
