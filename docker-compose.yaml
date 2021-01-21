@@ -1,0 +1,49 @@
+# Use root/example as user/password credentials
+
+version: "3.8"
+
+services:
+
+  gip-mysql:
+    image: mysql:5
+    container_name: gip-mysql
+    networks:
+      gip-net:
+        ipv4_address: ${MYSQL_IP}
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_USER_PASSWORD}
+      MYSQL_DATABASE: ${DB_SSID}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+        - ./mysql:/docker-entrypoint-initdb.d
+        - ${DB_DATA_DIR}:/var/lib/mysql
+
+  gip:
+    image: gestioip/gestioip:3554
+    container_name: gip
+    networks:
+      gip-net:
+        ipv4_address: ${GIP_IP}
+    restart: always
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_SSID: ${DB_SSID}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      BCK_USER_DISABLED: ${BCK_USER_DISABLED}
+      BCK_USER: ${BCK_USER}
+      BCK_USER_PASS: ${BCK_USER_PASS}
+    ports:
+        - ${HOST_PORT}:${CONTAINER_PORT}
+
+networks:
+  gip-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SUBNET}
+          gateway: ${GATEWAY}
