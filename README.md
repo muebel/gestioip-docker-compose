@@ -51,7 +51,7 @@ CONTAINER ID   IMAGE                    COMMAND                  CREATED       S
 ## Usage
 Access to the Gesti&oacute;IP installation by pointing your Browser to
 
-http://IP_DOCKER_HOST:80/
+http://IP_DOCKER_HOST
 
 
 
