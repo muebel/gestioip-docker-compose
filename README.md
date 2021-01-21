@@ -27,7 +27,7 @@ $ mv gestioip-docker-compose-main gestioip-docker-compose
 * Change to the new directory
 
 ```
-$ cd gestioip-docker-compose-main
+$ cd gestioip-docker-compose
 ```
 
 * Edit the .env file
