@@ -21,6 +21,7 @@ or
 ```
 $ wget https://github.com/muebel/gestioip-docker-compose/archive/main.zip
 $ unzip main.zip
+$ mv gestioip-docker-compose-main gestioip-docker-compose
 ```
 
 * Change to the new directory
