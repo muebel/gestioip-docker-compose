@@ -1,7 +1,0 @@
-To install the GestioIP CMM backup server software on the
-GestioIP server execute the script install_backup_server.sh
-like root:
-
-sudo ./install_backup_server.sh
-
-and follow the intructions.
