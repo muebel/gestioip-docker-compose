@@ -49,7 +49,7 @@ CONTAINER ID   IMAGE                    COMMAND                  CREATED       S
 
 
 ## Usage
-Access to the Gesti&oacute;IP installation by pointing your Browser to
+Access to the Gesti&oacute;IP installation by pointing your browser to
 
 http://IP_DOCKER_HOST
 
