@@ -1,6 +1,6 @@
 # Gesti&oacute;IP Docker Compose 
 
-Gesti&oacute;IP deployment with Docker Compose.
+Gesti&oacute;IP 3.5.5 deployment with Docker Compose.
 
 Gesti&oacute;IP is powerful free IP address management (IPAM) software. See https://www.gestioip.net for further details.
 
