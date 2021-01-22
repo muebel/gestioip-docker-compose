@@ -43,7 +43,7 @@ Expected result:
 ```
 $ docker ps
 CONTAINER ID   IMAGE                    COMMAND                  CREATED       STATUS       PORTS                  NAMES
-88b10cf6ffb8   gestioip/gestioip:3554   "/gestioip_install/s…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp   gip
+88b10cf6ffb8   gestioip/gestioip:3555   "/gestioip_install/s…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp   gip
 0d5efce2dfa7   mysql:5                  "docker-entrypoint.s…"   2 hours ago   Up 2 hours   3306/tcp, 33060/tcp    gip-mysql
 ```
 
@@ -53,6 +53,10 @@ Access to the Gesti&oacute;IP installation by pointing your browser to
 
 http://IP_DOCKER_HOST
 
+Username: gipadmin
+Password: PASSWORD
+
+Change the password after login from "manage > Users".
 
 
 ## Contributing
