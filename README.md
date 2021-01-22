@@ -53,7 +53,7 @@ Access to the Gesti&oacute;IP installation by pointing your browser to
 
 http://IP_DOCKER_HOST
 
-Username: gipadmin
+Username: gipadmin  
 Password: PASSWORD
 
 Change the password after login from "manage > Users".
