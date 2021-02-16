@@ -35,6 +35,11 @@ services:
       BCK_USER_DISABLED: ${BCK_USER_DISABLED}
       BCK_USER: ${BCK_USER}
       BCK_USER_PASS: ${BCK_USER_PASS}
+      USE_SSL: ${USE_SSL}
+      SERVER_NAME: ${SERVER_NAME}
+    volumes:
+        - ./apache/certs:/etc/apache2/ssl/certs
+        - ./apache/keys:/etc/apache2/ssl/keys
     ports:
         - ${HOST_PORT}:${CONTAINER_PORT}
 
