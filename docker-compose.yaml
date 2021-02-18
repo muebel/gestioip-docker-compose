@@ -20,7 +20,7 @@ services:
         - ${DB_DATA_DIR}:/var/lib/mysql
 
   gip:
-    image: gestioip/gestioip:35510
+    image: gestioip/gestioip:35511
     container_name: gip
     networks:
       gip-net:
