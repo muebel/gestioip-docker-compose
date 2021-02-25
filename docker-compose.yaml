@@ -20,7 +20,7 @@ services:
         - ${DB_DATA_DIR}:/var/lib/mysql
 
   gip:
-    image: gestioip/gestioip:35512
+    image: gestioip/gestioip:35513
     container_name: gip
     networks:
       gip-net:
@@ -40,6 +40,7 @@ services:
     volumes:
         - ./apache/certs:/etc/apache2/ssl/certs
         - ./apache/keys:/etc/apache2/ssl/keys
+        - ./apache/conf:/usr/share/gestioip/etc/apache
     ports:
         - ${HOST_PORT}:${CONTAINER_PORT}
 
