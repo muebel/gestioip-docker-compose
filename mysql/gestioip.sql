@@ -1,10 +1,10 @@
 USE gestioip;
 
--- MySQL dump 10.13  Distrib 8.0.22, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: gestioip
 -- ------------------------------------------------------
--- Server version	8.0.22-0ubuntu0.20.04.3
+-- Server version	8.0.26-0ubuntu0.20.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -45,8 +45,9 @@ CREATE TABLE `acl_connection_list` (
   `encrypted_base_proto` varchar(100) DEFAULT NULL,
   `remark` varchar(100) DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
+  `no_acl` smallint DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,8 +80,9 @@ CREATE TABLE `acl_list` (
   `action` varchar(6) DEFAULT NULL,
   `icmp_type` varchar(2) DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
+  `con_exists` smallint DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +110,7 @@ CREATE TABLE `allowed_macs` (
   `comment` varchar(500) NOT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +140,7 @@ CREATE TABLE `audit` (
   `remote_host` varchar(42) DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +170,7 @@ CREATE TABLE `audit_auto` (
   `remote_host` varchar(42) DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +197,7 @@ CREATE TABLE `autonomous_systems` (
   `as_client_id` smallint DEFAULT '-1',
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,7 +231,7 @@ CREATE TABLE `autonomous_systems_clients` (
   `contact_cell` varchar(30) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +256,7 @@ CREATE TABLE `categorias` (
   `cat` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cat` (`cat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +281,7 @@ CREATE TABLE `categorias_net` (
   `cat` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cat` (`cat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,7 +334,7 @@ CREATE TABLE `client_entries` (
   `dns_server_2_key` varchar(100) DEFAULT NULL,
   `dns_server_3_key` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,7 +358,7 @@ CREATE TABLE `clients` (
   `id` smallint NOT NULL DEFAULT '0',
   `client` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -387,7 +389,7 @@ CREATE TABLE `cm_server` (
   `cm_server_password` varchar(100) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +431,7 @@ CREATE TABLE `config` (
   `confirm_dns_delete` varchar(3) DEFAULT 'no',
   `delete_down_hosts` varchar(3) DEFAULT 'no',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -455,7 +457,7 @@ CREATE TABLE `custom_column_select` (
   `items` varchar(1000) DEFAULT NULL,
   `cc_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -483,7 +485,7 @@ CREATE TABLE `custom_host_column_entries` (
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `host_id_index` (`host_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -508,7 +510,7 @@ CREATE TABLE `custom_host_column_select` (
   `items` varchar(1000) DEFAULT NULL,
   `cc_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -534,7 +536,7 @@ CREATE TABLE `custom_host_columns` (
   `client_id` smallint NOT NULL,
   `mandatory` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -559,7 +561,7 @@ CREATE TABLE `custom_line_column_entries` (
   `line_id` smallint NOT NULL,
   `entry` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -584,7 +586,7 @@ CREATE TABLE `custom_line_column_select` (
   `items` varchar(1000) DEFAULT NULL,
   `cc_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -609,7 +611,7 @@ CREATE TABLE `custom_line_columns` (
   `name` varchar(100) NOT NULL,
   `mandatory` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -629,13 +631,13 @@ DROP TABLE IF EXISTS `custom_net_column_entries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `custom_net_column_entries` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
+  `id` mediumint NOT NULL AUTO_INCREMENT,
   `cc_id` smallint NOT NULL DEFAULT '0',
-  `net_id` smallint NOT NULL DEFAULT '0',
+  `net_id` mediumint NOT NULL DEFAULT '0',
   `entry` varchar(150) NOT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -661,7 +663,7 @@ CREATE TABLE `custom_net_columns` (
   `client_id` smallint NOT NULL,
   `mandatory` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -682,12 +684,12 @@ DROP TABLE IF EXISTS `custom_site_column_entries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `custom_site_column_entries` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
+  `id` mediumint NOT NULL AUTO_INCREMENT,
   `column_id` smallint NOT NULL,
-  `site_id` smallint NOT NULL,
+  `site_id` mediumint NOT NULL,
   `entry` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -712,7 +714,7 @@ CREATE TABLE `custom_site_column_select` (
   `items` varchar(1000) DEFAULT NULL,
   `cc_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -736,7 +738,7 @@ CREATE TABLE `custom_site_columns` (
   `name` varchar(100) NOT NULL,
   `mandatory` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -773,7 +775,7 @@ CREATE TABLE `device_cm_config` (
   `last_backup_log` varchar(40) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -798,7 +800,7 @@ CREATE TABLE `device_job_groups` (
   `description` varchar(500) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -831,7 +833,7 @@ CREATE TABLE `device_jobs` (
   `enabled` smallint DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -858,7 +860,7 @@ CREATE TABLE `device_keys` (
   `host_id` int DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -887,7 +889,7 @@ CREATE TABLE `device_user_groups` (
   `rsa_identity_file` varchar(300) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -913,7 +915,7 @@ CREATE TABLE `dns_keys` (
   `description` varchar(500) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -941,7 +943,7 @@ CREATE TABLE `dns_server_group` (
   `description` varchar(500) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -968,7 +970,7 @@ CREATE TABLE `dns_user` (
   `description` varchar(1500) NOT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -998,7 +1000,7 @@ CREATE TABLE `dns_zone` (
   `server_type` varchar(12) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1021,7 +1023,7 @@ CREATE TABLE `event_classes` (
   `id` smallint NOT NULL,
   `event_class` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1045,7 +1047,7 @@ CREATE TABLE `event_types` (
   `id` smallint NOT NULL,
   `event_type` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1113,7 +1115,7 @@ CREATE TABLE `gip_user_group_perms` (
   `manage_scheduled_jobs_perm` tinyint(1) NOT NULL,
   `smtp_server_management_perm` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1138,7 +1140,7 @@ CREATE TABLE `gip_user_groups` (
   `name` varchar(60) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1167,7 +1169,7 @@ CREATE TABLE `gip_users` (
   `comment` varchar(500) DEFAULT NULL,
   `type` varchar(12) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1216,7 +1218,7 @@ CREATE TABLE `global_config` (
   `limit_cc_output_enabled` varchar(3) NOT NULL DEFAULT 'yes',
   `debug_enabled` varchar(3) NOT NULL DEFAULT 'no',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1256,7 +1258,7 @@ CREATE TABLE `host` (
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ip` (`ip`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1286,7 +1288,7 @@ CREATE TABLE `ldap_group` (
   `enabled` smallint DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1321,7 +1323,7 @@ CREATE TABLE `ldap_server` (
   `enabled` smallint DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1346,7 +1348,7 @@ CREATE TABLE `ldap_user_groups` (
   `user_group_id` varchar(100) DEFAULT NULL,
   `last_change` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1379,7 +1381,7 @@ CREATE TABLE `llines` (
   `ad_number` varchar(100) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1413,7 +1415,7 @@ CREATE TABLE `llines_clients` (
   `contact_cell` varchar(30) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1438,7 +1440,7 @@ CREATE TABLE `locations` (
   `loc` varchar(60) DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1447,7 +1449,7 @@ CREATE TABLE `locations` (
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;
-INSERT INTO `locations` VALUES (-1,'NULL',9999),(1,'Lon1',1),(2,'Lon2',1),(3,'NY',1),(4,'Sydney',1);
+INSERT INTO `locations` VALUES (-1,'NULL',9999),(1,'Lon',1),(2,'NY',1),(3,'Sydney',1);
 /*!40000 ALTER TABLE `locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1465,7 +1467,7 @@ CREATE TABLE `master_keys` (
   `client_id` smallint DEFAULT NULL,
   `changed` smallint DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1501,7 +1503,7 @@ CREATE TABLE `net` (
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`red_num`),
   KEY `red` (`red`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1525,7 +1527,7 @@ CREATE TABLE `ports` (
   `port_nr` mediumint NOT NULL,
   `port_name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=344 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=344 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1549,7 +1551,7 @@ CREATE TABLE `predef_host_columns` (
   `id` smallint NOT NULL DEFAULT '0',
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1558,7 +1560,7 @@ CREATE TABLE `predef_host_columns` (
 
 LOCK TABLES `predef_host_columns` WRITE;
 /*!40000 ALTER TABLE `predef_host_columns` DISABLE KEYS */;
-INSERT INTO `predef_host_columns` VALUES (-1,'NOTYPE'),(1,'vendor'),(2,'model'),(3,'contact'),(4,'serial'),(5,'MAC'),(6,'OS'),(7,'device_descr'),(8,'device_name'),(9,'device_loc'),(10,'URL'),(11,'rack'),(12,'RU'),(13,'switch'),(14,'port'),(15,'linkedIP'),(16,'CM'),(17,'ifDescr'),(18,'ifAlias'),(19,'Line'),(20,'Tag'),(21,'SNMPGroup');
+INSERT INTO `predef_host_columns` VALUES (-1,'NOTYPE'),(1,'vendor'),(2,'model'),(3,'contact'),(4,'serial'),(5,'MAC'),(6,'OS'),(7,'device_descr'),(8,'device_name'),(9,'device_loc'),(10,'URL'),(11,'rack'),(12,'RU'),(13,'switch'),(14,'port'),(15,'linkedIP'),(16,'CM'),(17,'ifDescr'),(18,'ifAlias'),(19,'Line'),(20,'Tag'),(21,'SNMPGroup'),(22,'VLAN'),(23,'Sec_Zone'),(24,'Instance');
 /*!40000 ALTER TABLE `predef_host_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1573,7 +1575,7 @@ CREATE TABLE `predef_net_columns` (
   `id` smallint NOT NULL DEFAULT '0',
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1582,7 +1584,7 @@ CREATE TABLE `predef_net_columns` (
 
 LOCK TABLES `predef_net_columns` WRITE;
 /*!40000 ALTER TABLE `predef_net_columns` DISABLE KEYS */;
-INSERT INTO `predef_net_columns` VALUES (-1,'NOTYPE'),(1,'vlan'),(2,'Fav'),(3,'VRF'),(4,'ifDescr'),(5,'ifAlias'),(6,'local'),(7,'DNSZone'),(8,'DNSPTRZone'),(9,'usage'),(10,'SNMPGroup'),(11,'Tag'),(13,'DNSSG');
+INSERT INTO `predef_net_columns` VALUES (-1,'NOTYPE'),(1,'vlan'),(2,'Fav'),(3,'VRF'),(4,'ifDescr'),(5,'ifAlias'),(6,'local'),(7,'DNSZone'),(8,'DNSPTRZone'),(9,'usage'),(10,'SNMPGroup'),(11,'Tag'),(13,'DNSSG'),(14,'ScanAZone'),(15,'ScanPTRZone');
 /*!40000 ALTER TABLE `predef_net_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1598,7 +1600,7 @@ CREATE TABLE `protocols` (
   `protocol_nr` mediumint NOT NULL,
   `protocol_name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1622,7 +1624,7 @@ CREATE TABLE `range_type` (
   `id` smallint NOT NULL DEFAULT '0',
   `range_type` varchar(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1651,7 +1653,7 @@ CREATE TABLE `ranges` (
   `red_num` varchar(5) DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1661,6 +1663,30 @@ CREATE TABLE `ranges` (
 LOCK TABLES `ranges` WRITE;
 /*!40000 ALTER TABLE `ranges` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ranges` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `scan_zone_entries_network`
+--
+
+DROP TABLE IF EXISTS `scan_zone_entries_network`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `scan_zone_entries_network` (
+  `id` mediumint NOT NULL AUTO_INCREMENT,
+  `zone_id` mediumint DEFAULT NULL,
+  `net_id` mediumint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `scan_zone_entries_network`
+--
+
+LOCK TABLES `scan_zone_entries_network` WRITE;
+/*!40000 ALTER TABLE `scan_zone_entries_network` DISABLE KEYS */;
+/*!40000 ALTER TABLE `scan_zone_entries_network` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1679,7 +1705,7 @@ CREATE TABLE `scheduled_job_status` (
   `exit_message` varchar(1500) DEFAULT NULL,
   `log_file` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1713,7 +1739,7 @@ CREATE TABLE `scheduled_jobs` (
   `repeat_interval` varchar(500) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1744,7 +1770,7 @@ CREATE TABLE `smtp_server` (
   `comment` varchar(500) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1778,7 +1804,7 @@ CREATE TABLE `snmp_group` (
   `comment` varchar(500) DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1804,7 +1830,7 @@ CREATE TABLE `tag` (
   `description` varchar(500) DEFAULT NULL,
   `client_id` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1828,7 +1854,7 @@ CREATE TABLE `tag_entries_host` (
   `tag_id` mediumint DEFAULT NULL,
   `host_id` mediumint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1852,7 +1878,7 @@ CREATE TABLE `tag_entries_network` (
   `tag_id` mediumint DEFAULT NULL,
   `net_id` mediumint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1876,7 +1902,7 @@ CREATE TABLE `update_type` (
   `type` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1900,7 +1926,7 @@ CREATE TABLE `update_types_audit` (
   `id` smallint NOT NULL,
   `update_types_audit` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1909,7 +1935,7 @@ CREATE TABLE `update_types_audit` (
 
 LOCK TABLES `update_types_audit` WRITE;
 /*!40000 ALTER TABLE `update_types_audit` DISABLE KEYS */;
-INSERT INTO `update_types_audit` VALUES (1,'man'),(2,'auto'),(3,'auto snmp'),(4,'auto dns'),(5,'auto ocs'),(6,'man dns'),(7,'man snmp'),(8,'man net sheet'),(9,'man range'),(10,'man host sheet'),(11,'red cleared'),(12,'vlan sheet'),(13,'api'),(14,'auto prtg'),(15,'dhcp sync'),(17,'sheet');
+INSERT INTO `update_types_audit` VALUES (1,'man'),(2,'auto'),(3,'auto snmp'),(4,'auto dns'),(5,'auto ocs'),(6,'man dns'),(7,'man snmp'),(8,'man net sheet'),(9,'man range'),(10,'man host sheet'),(11,'red cleared'),(12,'vlan sheet'),(13,'api'),(14,'auto prtg'),(15,'dhcp sync'),(17,'sheet'),(18,'dhcp sync'),(19,'auto cloud');
 /*!40000 ALTER TABLE `update_types_audit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1926,7 +1952,7 @@ CREATE TABLE `user_passwords` (
   `user_id` smallint NOT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1951,7 +1977,7 @@ CREATE TABLE `vlan_providers` (
   `comment` varchar(500) DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1983,7 +2009,7 @@ CREATE TABLE `vlans` (
   `asso_vlan` smallint DEFAULT NULL,
   `client_id` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2004,4 +2030,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-15 17:39:11
+-- Dump completed on 2021-11-11 13:19:06
