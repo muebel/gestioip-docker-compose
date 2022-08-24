@@ -67,3 +67,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
